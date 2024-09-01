@@ -21,6 +21,7 @@
 
 # IDE
 .idea/
+target/
 
 # MacOS
 .DS_Store
