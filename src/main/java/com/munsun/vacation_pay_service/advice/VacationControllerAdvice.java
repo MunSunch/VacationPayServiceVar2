@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.MissingRequestValueException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -20,18 +19,6 @@ import java.util.Map;
 @Slf4j
 @RestControllerAdvice
 public class VacationControllerAdvice {
-    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
-        String message = e.getBindingResult().getFieldErrors().stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.joining(", "));
-        log.error("Validation error DTO, message={}", message);
-        return ResponseEntity
-                .badRequest()
-                .body(new ErrorResponse(message, e.getClass().getName(), HttpStatus.BAD_REQUEST.value()));
-    }
-
-
     @ExceptionHandler({HttpMessageNotReadableException.class, MissingServletRequestParameterException.class})
     public ResponseEntity<?> handleHttpMessageNotReadableException(Exception e) {
         log.error("Validation error DTO, message={}", e.getMessage());
