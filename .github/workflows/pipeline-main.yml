@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  PROJECT_NAME: vacation_pay_service
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,16 +30,14 @@ jobs:
           username: ${{ secrets.DOCKER_LOGIN }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Extract project version and artifactId for docker image
+      - name: Extract project version for docker image
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)
           RELEASE_VERSION=$(echo $VERSION | sed 's/-SNAPSHOT//')
           echo "VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
-          echo "ARTIFACT_ID=$ARTIFACT_ID" >> $GITHUB_ENV
 
       - name: Build image
-        run: docker build . -t ${{ secrets.DOCKER_LOGIN }}/$ARTIFACT_ID:$VERSION -t ${{ secrets.DOCKER_LOGIN }}/$ARTIFACT_ID:latest --no-cache
+        run: docker build . -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:$VERSION -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:latest --no-cache
 
       - name: Send to dockerhub registry
-        run: docker push ${{ secrets.DOCKER_LOGIN }}/$ARTIFACT_ID --all-tags
+        run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }} --all-tags
