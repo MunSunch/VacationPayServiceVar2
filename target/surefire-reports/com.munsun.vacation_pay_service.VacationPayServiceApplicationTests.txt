@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.munsun.vacation_pay_service.VacationPayServiceApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.304 s - in com.munsun.vacation_pay_service.VacationPayServiceApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.665 s - in com.munsun.vacation_pay_service.VacationPayServiceApplicationTests
