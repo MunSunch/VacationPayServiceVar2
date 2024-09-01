@@ -1,8 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-VacationPayService,com.munsun.vacation_pay_service.aspects,VacationServiceAspect,1,7,0,0,1,2,1,2,1,2
-VacationPayService,com.munsun.vacation_pay_service.dto.response,ErrorResponse,0,36,0,0,0,6,0,8,0,8
-VacationPayService,com.munsun.vacation_pay_service,VacationPayServiceApplication,5,3,0,0,2,1,1,1,1,1
-VacationPayService,com.munsun.vacation_pay_service.configurations,SwaggerConfiguration,0,54,0,0,0,10,0,2,0,2
-VacationPayService,com.munsun.vacation_pay_service.advice,VacationControllerAdvice,19,127,0,0,4,30,1,8,1,8
-VacationPayService,com.munsun.vacation_pay_service.controllers.impl,VacationController,0,12,0,0,0,2,0,2,0,2
-VacationPayService,com.munsun.vacation_pay_service.services.impl,DefaultVacationService,0,40,0,0,0,10,0,3,0,3
