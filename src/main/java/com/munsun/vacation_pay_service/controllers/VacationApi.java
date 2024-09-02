@@ -25,7 +25,7 @@ public interface VacationApi {
     @Operation(summary = "расчёт без учёта выходных и праздников")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
-                    description = "Пользователь успешно создан",
+                    description = "Вычисление выполнено успешно",
                     content = @Content(
                             schema = @Schema(implementation = BigDecimal.class),
                             mediaType = MediaType.APPLICATION_JSON_VALUE)

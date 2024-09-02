@@ -11,24 +11,24 @@ import java.math.BigDecimal;
 @Aspect
 @Component
 public class VacationServiceAspect {
-    @Pointcut("execution(* com.munsun.vacation_pay_service.services.VacationService.calculate(..))")
+    @Pointcut("execution(* com.munsun.vacation_pay_service.services.VacationService+.calculate(java.math.BigDecimal, Integer))")
     public void executionCalculatePayMethod() {}
 
-//    @Before("executionCalculatePayMethod() && args(info)")
-//    public void beforeCalculatePayMethod(JoinPoint joinPoint, VacationShortInfoDto info) {
-//        log.debug("execution={}, info={}, calculation in progress", joinPoint.getSignature(), info);
-//        log.info("info={}, calculation in progress", info);
-//    }
-//
-//    @AfterReturning(value = "executionCalculatePayMethod() && args(info)", returning = "result")
-//    public void afterCalculatePayMethod(JoinPoint joinPoint, VacationShortInfoDto info, BigDecimal result) {
-//        log.debug("execution={}, info={}, calculate is completed, result={}", joinPoint.getSignature(), info, result);
-//        log.info("info={}, calculate is completed, result={}", info, result);
-//    }
-//
-//    @AfterThrowing(value = "executionCalculatePayMethod() && args(info)", throwing = "e")
-//    public void afterThrowExceptionCalculatePayMethod(JoinPoint joinPoint, VacationShortInfoDto info, Throwable e) {
-//        log.debug("execution={}, info={}, calculate is not completed, exception={}, message={}", joinPoint.getSignature(), info, e.getClass().getSimpleName(), e.getMessage());
-//        log.warn("info={}, calculate is not completed, exception={}, message={}", info, e.getClass().getSimpleName(), e.getMessage());
-//    }
+    @Before("executionCalculatePayMethod() && args(salary, days)")
+    public void beforeCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days){
+        log.debug("execution={}, args{salary={}, days={}), calculation in progress", joinPoint.getSignature(), salary, days);
+        log.info("args{salary={}, days={}, calculation in progress", salary, days);
+    }
+
+    @AfterReturning(value = "executionCalculatePayMethod() && args(salary, days)", returning = "result")
+    public void afterCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days, BigDecimal result) {
+        log.debug("execution={}, args{salary={}, days={}), calculate is completed, result={}", joinPoint.getSignature(), salary, days, result);
+        log.info("args{salary={}, days={}), calculate is completed, result={}", salary, days, result);
+    }
+
+    @AfterThrowing(value = "executionCalculatePayMethod() && args(salary, days)", throwing = "e")
+    public void afterThrowExceptionCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days, Throwable e) {
+        log.debug("execution={}, args{salary={}, days={}), calculate is not completed, exception={}, message={}", joinPoint.getSignature(), salary, days, e.getClass().getSimpleName(), e.getMessage());
+        log.warn("args{salary={}, days={}), calculate is not completed, exception={}, message={}", salary, days, e.getClass().getSimpleName(), e.getMessage());
+    }
 }
