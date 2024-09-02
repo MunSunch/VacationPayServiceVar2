@@ -15,19 +15,19 @@ public class VacationControllerAspect {
     public void executionCalculateVacationPayMethod() {}
 
     @Before("executionCalculateVacationPayMethod() && args(salary, days)")
-    public void beforeCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days){
+    public void beforeCalculatePayMethodController(JoinPoint joinPoint, BigDecimal salary, Integer days){
         log.debug("execution={}, Request: GET /v1/calculate?salary={}&days={}", joinPoint.getSignature(), salary, days);
         log.info("Request: GET /v1/calculate?salary={}&days={}", salary, days);
     }
 
     @AfterReturning(value = "executionCalculateVacationPayMethod() && args(salary, days)", returning = "result")
-    public void afterCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days, BigDecimal result) {
+    public void afterCalculatePayMethodController(JoinPoint joinPoint, BigDecimal salary, Integer days, BigDecimal result) {
         log.debug("execution={}, Response: GET /v1/calculate?salary={}&days={}, response={}", joinPoint.getSignature(), salary, days, result);
         log.info("Response: GET /v1/calculate?salary={}&days={}, response={}", salary, days, result);
     }
 
     @AfterThrowing(value = "executionCalculateVacationPayMethod() && args(salary, days)", throwing = "e")
-    public void afterThrowExceptionCalculatePayMethod(JoinPoint joinPoint, BigDecimal salary, Integer days, Throwable e) {
+    public void afterThrowExceptionCalculatePayMethodController(JoinPoint joinPoint, BigDecimal salary, Integer days, Throwable e) {
         log.debug("execution={}, Response: GET /v1/calculate?salary={}&days={}, exception={}, message={}", joinPoint.getSignature(), salary, days, e.getClass().getSimpleName(), e.getMessage());
         log.warn("Response: GET /v1/calculate?salary={}&days={}, exception={}, message={}", salary, days, e.getClass().getSimpleName(), e.getMessage());
     }
