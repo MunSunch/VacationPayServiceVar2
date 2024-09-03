@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @Aspect
 @Component
 public class VacationServiceAspect {
-    @Pointcut("execution(* com.munsun.vacation_pay_service.services.VacationService+.calculate(java.math.BigDecimal, Integer))")
+    @Pointcut("execution(* com.munsun.vacation_pay_service.services.DefaultVacationService.calculate(java.math.BigDecimal, Integer))")
     public void executionCalculatePayMethod() {}
 
     @Before("executionCalculatePayMethod() && args(salary, days)")
     public void beforeCalculatePayMethodService(JoinPoint joinPoint, BigDecimal salary, Integer days){
-        log.debug("execution={}, args{salary={}, days={}), calculation in progress", joinPoint.getSignature(), salary, days);
-        log.info("args{salary={}, days={}, calculation in progress", salary, days);
+        log.debug("execution={}, args{salary={}, days={}), calculation...", joinPoint.getSignature(), salary, days);
+        log.info("args{salary={}, days={}, calculation...", salary, days);
     }
 
     @AfterReturning(value = "executionCalculatePayMethod() && args(salary, days)", returning = "result")

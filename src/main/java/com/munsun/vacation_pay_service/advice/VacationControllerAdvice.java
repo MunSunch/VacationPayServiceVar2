@@ -1,6 +1,9 @@
 package com.munsun.vacation_pay_service.advice;
 
 import com.munsun.vacation_pay_service.dto.response.ErrorResponse;
+import com.munsun.vacation_pay_service.exceptions.CalculationArgumentException;
+import com.munsun.vacation_pay_service.exceptions.CalendarArgumentException;
+import com.munsun.vacation_pay_service.exceptions.CalendarNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +22,16 @@ import java.util.Map;
 @RestControllerAdvice
 public class VacationControllerAdvice {
     @ExceptionHandler({HttpMessageNotReadableException.class, MissingServletRequestParameterException.class})
-    public ResponseEntity<?> handleHttpMessageNotReadableException(Exception e) {
+    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(Exception e) {
         log.error("Validation error DTO, message={}", e.getMessage());
+        return ResponseEntity
+                .badRequest()
+                .body(new ErrorResponse(e.getMessage(), e.getClass().getName(), HttpStatus.BAD_REQUEST.value()));
+    }
+
+    @ExceptionHandler({CalculationArgumentException.class, CalendarArgumentException.class})
+    public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e) {
+        log.error("Invalid arguments, message={}", e.getMessage());
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorResponse(e.getMessage(), e.getClass().getName(), HttpStatus.BAD_REQUEST.value()));
@@ -43,11 +54,19 @@ public class VacationControllerAdvice {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<?> handleRuntimeException(RuntimeException e) {
+    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException e) {
         log.error("Server's error; message=", e.getMessage());
         return ResponseEntity
                 .internalServerError()
                 .body(new ErrorResponse(e.getMessage(), e.getClass().getName(), HttpStatus.INTERNAL_SERVER_ERROR.value()));
+    }
+
+    @ExceptionHandler(CalendarNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCalendarNotFoundException(RuntimeException e) {
+        log.error("Calendar not found; message={}", e.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse(e.getMessage(), e.getClass().getName(), HttpStatus.NOT_FOUND.value()));
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
