@@ -2,6 +2,7 @@ package com.munsun.vacation_pay_service.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.munsun.vacation_pay_service.dto.response.ErrorResponse;
+import com.munsun.vacation_pay_service.exceptions.CalendarNotFoundException;
 import com.munsun.vacation_pay_service.services.DefaultVacationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -109,5 +110,45 @@ public class VacationControllerUnitTests {
         assertThat(result.getResponse().getContentAsString())
                 .isEqualTo(String.valueOf(expected));
         verify(service, atLeastOnce()).calculate(any(BigDecimal.class), any(Integer.class));
+    }
+
+    @DisplayName("Given calendar not found when send request GET /api/calculator/v2/calculate")
+    @Test
+    public void givenCalendarNotFound_whenSendRequestCalculateV2_thenReturnNotFound() throws Exception {
+        LocalDate startDate = LocalDate.of(2024, 1, 1);
+        LocalDate endDate = LocalDate.of(2024, 1, 31);
+        when(service.calculate(any(BigDecimal.class), any(LocalDate.class), any(LocalDate.class)))
+                .thenThrow(new CalendarNotFoundException("Calendar not found"));
+
+        MvcResult result = mockMvc.perform(get("/api/calculator/v2/calculate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("salary", "20000")
+                .param("startDate", String.valueOf(startDate))
+                .param("endDate", String.valueOf(endDate)))
+                .andExpect(status().isNotFound())
+                .andReturn();
+
+        assertThat(result.getResponse().getStatus())
+                .isEqualTo(HttpStatus.NOT_FOUND.value());
+        verify(service, atLeastOnce()).calculate(any(BigDecimal.class), any(LocalDate.class), any(LocalDate.class));
+    }
+
+    @DisplayName("Given server error when send request GET /api/calculator/v2/calculate")
+    @Test
+    public void givenServerError_whenSendRequestCalculateV2_thenReturnInternalServerError() throws Exception {
+        when(service.calculate(any(BigDecimal.class), any(LocalDate.class), any(LocalDate.class)))
+                .thenThrow(new RuntimeException("Server error"));
+
+        MvcResult result = mockMvc.perform(get("/api/calculator/v2/calculate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("salary", "20000")
+                        .param("startDate", "2020-01-01")
+                        .param("endDate", "2020-01-31"))
+                .andExpect(status().isInternalServerError())
+                .andReturn();
+
+        assertThat(result.getResponse().getStatus())
+                .isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        verify(service, atLeastOnce()).calculate(any(BigDecimal.class), any(LocalDate.class), any(LocalDate.class));
     }
 }
