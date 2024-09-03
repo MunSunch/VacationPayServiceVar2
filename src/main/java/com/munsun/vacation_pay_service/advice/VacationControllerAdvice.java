@@ -47,6 +47,7 @@ public class VacationControllerAdvice {
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.joining("; "))
                 .toString();
+        log.error("Validation error DTO, message={}", message);
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorResponse(message, ex.getClass().getName(), HttpStatus.BAD_REQUEST.value()));
@@ -80,6 +81,7 @@ public class VacationControllerAdvice {
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.joining("; "))
                 .toString();
+        log.error("Validation error DTO, message={}", message);
         return ResponseEntity
                 .badRequest()
                 .body(new ErrorResponse(message, ex.getClass().getName(), HttpStatus.BAD_REQUEST.value()));
