@@ -20,4 +20,5 @@
 git clone https://github.com/MunSunch/VacationPayServiceVar2.git
 cd VacationPayServiceVar2
 docker compose up -d
+echo "start application: http://localhost:8080/api-docs-ui"
 ```
