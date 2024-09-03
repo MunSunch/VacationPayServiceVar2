@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.munsun.vacation_pay_service.dto.utils.CalendarDto;
 import com.munsun.vacation_pay_service.dto.utils.HolidayDto;
-import com.munsun.vacation_pay_service.exceptions.CalculationArgumentException;
 import com.munsun.vacation_pay_service.exceptions.CalendarArgumentException;
 import com.munsun.vacation_pay_service.exceptions.CalendarNotFoundException;
 import com.munsun.vacation_pay_service.services.providers.Calendar;
@@ -19,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class DefaultCalendar implements Calendar {
+public class InMemoryCalendar implements Calendar {
     private final ObjectMapper objectMapper;
     private List<CalendarDto> calendarWithHolidays;
 

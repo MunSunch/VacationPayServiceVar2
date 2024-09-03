@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Component
-public class DefaultCalculator implements Calculator {
+public class SimpleCalculator implements Calculator {
     private static final BigDecimal AVERAGE_COUNT_DAYS_MONTH = new BigDecimal("29.3");
     private static final int COUNT_DIGITS_ROUND = 2;
     private static final BigDecimal TAX_PERCENT = new BigDecimal("0.13");
