@@ -11,3 +11,7 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /api-docs-ui
+
+vacation:
+  calendar:
+    url: https://calendar.kuzyak.in/api/calendar
