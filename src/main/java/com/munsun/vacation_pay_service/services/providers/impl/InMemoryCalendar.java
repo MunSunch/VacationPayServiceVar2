@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,12 @@ public class InMemoryCalendar implements Calendar {
 
     @PostConstruct
     public void initCalendarDto() throws IOException {
-        byte[] bytes = ClassLoader.getSystemResourceAsStream("calendar-holidays.json").readAllBytes();
+        byte[] bytes = null;
+        try (InputStream stream = InMemoryCalendar.class.getClassLoader().getResourceAsStream("calendar-holidays.json")) {
+            bytes = stream.readAllBytes();
+        } catch (IOException e) {
+            throw new IOException("Can't read calendar-holidays.json");
+        }
         this.calendarWithHolidays = objectMapper.readValue(bytes, new TypeReference<List<CalendarDto>>(){});
     }
 
