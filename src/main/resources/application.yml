@@ -3,7 +3,7 @@ spring:
     name: VacationPayService
 
 app:
-  version: 0.1.3-SNAPSHOT
+  version: 0.1.3
   contact: https://t.me/score_msConfig021
 
 springdoc:
