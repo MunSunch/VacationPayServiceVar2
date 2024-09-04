@@ -1,4 +1,5 @@
 [![codecov](https://codecov.io/gh/MunSunch/VacationPayServiceVar2/graph/badge.svg?token=EZ44G3V576)](https://codecov.io/gh/MunSunch/VacationPayServiceVar2) 
+![GitHub stars](https://img.shields.io/github/stars/MunSunch/VacationPayServiceVar2)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/MunSunch/VacationPayServiceVar2)
 ![GitHub watchers](https://img.shields.io/github/watchers/MunSunch/VacationPayServiceVar2)
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=MunSunch_VacationPayServiceVar2)
