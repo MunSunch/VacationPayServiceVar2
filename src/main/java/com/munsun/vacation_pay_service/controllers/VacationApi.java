@@ -43,7 +43,7 @@ public interface VacationApi {
     })
     @Parameters({
             @Parameter(name = "salary", description = "Средняя зарплата за 12 месяцев", example = "12500", required = true),
-            @Parameter(name = "countDays", description = "Кол-во дней", example = "28", required = true)
+            @Parameter(name = "countDaysVacation", description = "Кол-во дней отпуска", example = "28", required = true)
     })
     BigDecimal calculateVacationPay(@Min(1) @NotNull BigDecimal salary, @NotNull @Min(1) Integer countDaysVacation);
 
