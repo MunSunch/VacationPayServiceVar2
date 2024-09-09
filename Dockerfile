@@ -1,12 +1,21 @@
-FROM bellsoft/liberica-openjre-alpine:17.0.9 as builder
+FROM bellsoft/liberica-openjdk-alpine:21.0.4 AS builder
 EXPOSE 8080
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} application.jar
-RUN java -Djarmode=layertools -jar application.jar extract
+WORKDIR /application
+COPY . .
+RUN --mount=type=cache,target=/root/.m2 chmod +x mvnw && ./mvnw clean install -Dmaven.test.skip
 
-FROM bellsoft/liberica-openjre-alpine:17.0.9
-COPY --from=builder dependencies/ ./
-COPY --from=builder snapshot-dependencies/ ./
-COPY --from=builder spring-boot-loader/ ./
-COPY --from=builder application/ ./
+FROM bellsoft/liberica-openjre-alpine:21.0.4 AS layers
+WORKDIR /application
+COPY --from=builder /application/target/*.jar app.jar
+RUN java -Djarmode=layertools -jar app.jar extract
+
+FROM bellsoft/liberica-openjre-alpine:21.0.4
+VOLUME /tmp
+RUN adduser -S spring-user
+USER spring-user
+COPY --from=layers /application/dependencies/ ./
+COPY --from=layers /application/spring-boot-loader/ ./
+COPY --from=layers /application/snapshot-dependencies/ ./
+COPY --from=layers /application/application/ ./
+
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
