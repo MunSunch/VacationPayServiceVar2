@@ -3,7 +3,6 @@ package com.munsun.vacation_pay_service.services.providers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,6 +39,18 @@ public class CalculatorUnitTests {
         BigDecimal expected = new BigDecimal("18454.00");
 
         BigDecimal actual = calculator.calculate(salary, days);
+
+        assertThat(actual)
+                .isEqualTo(expected);
+    }
+
+    @DisplayName("Test calculate vacation pay where startDate-endDate=0")
+    @Test
+    public void givenStartAndEndDates_whenCalculatePay_thenReturnZero() {
+        BigDecimal expected = new BigDecimal("0.00");
+        BigDecimal salary = new BigDecimal("22000");
+
+        BigDecimal actual = calculator.calculate(salary, 0);
 
         assertThat(actual)
                 .isEqualTo(expected);
