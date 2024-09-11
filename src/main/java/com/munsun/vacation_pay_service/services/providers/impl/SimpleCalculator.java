@@ -15,7 +15,7 @@ public class SimpleCalculator implements Calculator {
 
     @Override
     public BigDecimal calculate(BigDecimal salary, Integer countDays) {
-        if(salary == null || countDays == null || countDays <= 0 || salary.compareTo(BigDecimal.ZERO) == 0) {
+        if(salary == null || countDays == null || countDays < 0 || salary.compareTo(BigDecimal.ZERO) == 0) {
             throw new CalculationArgumentException("Salary or count days must be greater than 0");
         }
         BigDecimal hundredPercent = new BigDecimal(1);
