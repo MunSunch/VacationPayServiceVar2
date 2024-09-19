@@ -5,7 +5,7 @@
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=MunSunch_VacationPayServiceVar2)
 
 # Приложение "Калькулятор отпускных". Микросервис на SpringBoot + Java 11
-Проект удаленно развернут: http://51.250.74.226:8080/api-docs-ui
+Проект удаленно развернут на ВМ в yandex cloud: http://51.250.74.226:8080/api-docs-ui
 
 ## Минимальные требования
 Приложение принимает твою среднюю зарплату за 12 месяцев и количество дней отпуска - отвечает суммой отпускных, которые придут сотруднику.
