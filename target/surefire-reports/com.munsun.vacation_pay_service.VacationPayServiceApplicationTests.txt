@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.munsun.vacation_pay_service.VacationPayServiceApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.667 s <<< FAILURE! - in com.munsun.vacation_pay_service.VacationPayServiceApplicationTests
-contextLoads  Time elapsed: 0.019 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.cloud.commons.ConfigDataMissingEnvironmentPostProcessor$ImportException: No spring.config.import set
-
