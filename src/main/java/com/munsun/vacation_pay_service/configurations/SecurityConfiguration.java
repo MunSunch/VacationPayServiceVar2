@@ -10,7 +10,6 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable()
                 .authorizeRequests(requests ->
                         requests.mvcMatchers("/actuator/**").hasRole("ADMIN")
                                 .anyRequest().permitAll())
