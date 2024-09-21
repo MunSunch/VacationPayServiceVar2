@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+VacationPayService,com.munsun.vacation_pay_service.dto.response,ErrorResponse,36,0,0,0,6,0,8,0,8,0
+VacationPayService,com.munsun.vacation_pay_service,VacationPayServiceApplication,8,0,0,0,3,0,2,0,2,0
+VacationPayService,com.munsun.vacation_pay_service.exceptions,CalculationArgumentException,4,0,0,0,2,0,1,0,1,0
+VacationPayService,com.munsun.vacation_pay_service.exceptions,CalendarArgumentException,4,0,0,0,2,0,1,0,1,0
+VacationPayService,com.munsun.vacation_pay_service.exceptions,CalendarNotFoundException,4,0,0,0,2,0,1,0,1,0
+VacationPayService,com.munsun.vacation_pay_service.configurations,SwaggerConfiguration,54,0,0,0,10,0,2,0,2,0
+VacationPayService,com.munsun.vacation_pay_service.advice,VacationControllerAdvice,193,0,0,0,44,0,11,0,11,0
+VacationPayService,com.munsun.vacation_pay_service.services,DefaultVacationService,38,0,0,0,6,0,3,0,3,0
+VacationPayService,com.munsun.vacation_pay_service.dto.utils,HolidayDto,30,0,0,0,6,0,7,0,7,0
+VacationPayService,com.munsun.vacation_pay_service.dto.utils,HolidayDto.HolidayDtoBuilder,28,0,0,0,1,0,5,0,5,0
+VacationPayService,com.munsun.vacation_pay_service.dto.utils,CalendarDto,26,0,0,0,5,0,6,0,6,0
+VacationPayService,com.munsun.vacation_pay_service.services.providers.impl,InMemoryCalendar.new TypeReference() {...},6,0,0,0,1,0,1,0,1,0
+VacationPayService,com.munsun.vacation_pay_service.services.providers.impl,SimpleCalculator,49,0,8,0,10,0,6,0,2,0
+VacationPayService,com.munsun.vacation_pay_service.services.providers.impl,InMemoryCalendar,114,0,12,0,21,0,13,0,7,0
+VacationPayService,com.munsun.vacation_pay_service.controllers.impl,VacationController,19,0,0,0,3,0,3,0,3,0

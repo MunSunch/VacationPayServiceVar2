@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SwaggerConfiguration.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">VacationPayService</a> &gt; <a href="index.source.html" class="el_package">com.munsun.vacation_pay_service.configurations</a> &gt; <span class="el_source">SwaggerConfiguration.java</span></div><h1>SwaggerConfiguration.java</h1><pre class="source lang-java linenums">package com.munsun.vacation_pay_service.configurations;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+
+@Configuration
+@OpenAPIDefinition
+<span class="nc" id="L15">public class SwaggerConfiguration {</span>
+    @Value(&quot;${app.version}&quot;)
+    private String appVersion;
+    @Value(&quot;${spring.application.name}&quot;)
+    private String appName;
+    @Value(&quot;${app.contact}&quot;)
+    private String contact;
+
+    private static final String APP_DESCRIPTION = &quot; %s API - сервис для вычисления отпускных.&quot;;
+
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public OpenAPI openAPI() {
+<span class="nc" id="L28">        final String apiAppName = appName.substring(0, 1).toUpperCase() + appName.substring(1);</span>
+<span class="nc" id="L29">        return new OpenAPI()</span>
+<span class="nc" id="L30">                .info(new Info()</span>
+<span class="nc" id="L31">                        .title(String.format(&quot;%s API&quot;, appName))</span>
+<span class="nc" id="L32">                        .version(appVersion)</span>
+<span class="nc" id="L33">                        .description(String.format(APP_DESCRIPTION, apiAppName))</span>
+<span class="nc" id="L34">                        .contact(new Contact()</span>
+<span class="nc" id="L35">                                    .name(&quot;telegram&quot;)</span>
+<span class="nc" id="L36">                                    .url(contact)</span>
+                        )
+                );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
