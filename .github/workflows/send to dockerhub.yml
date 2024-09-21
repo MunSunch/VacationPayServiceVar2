@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        run: mvn clean package -DskipTests=true -Dspring.security.user.name={{ secrets.SPRING_SECURITY_USERNAME }} -Dspring.security.user.password={{ secrets.SPRING_SECURITY_PASSWORD }} -B
+        run: mvn clean package -DskipTests=true -Dspring.security.user.name=${{ secrets.SPRING_SECURITY_USERNAME }} -Dspring.security.user.password=${{ secrets.SPRING_SECURITY_PASSWORD }} -B
 
       - name: DockerHub Authenticate
         uses: docker/login-action@v3.3.0
