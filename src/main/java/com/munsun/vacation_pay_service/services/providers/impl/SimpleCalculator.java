@@ -2,16 +2,22 @@ package com.munsun.vacation_pay_service.services.providers.impl;
 
 import com.munsun.vacation_pay_service.exceptions.CalculationArgumentException;
 import com.munsun.vacation_pay_service.services.providers.Calculator;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Component
+@RefreshScope
 public class SimpleCalculator implements Calculator {
-    private static final BigDecimal AVERAGE_COUNT_DAYS_MONTH = new BigDecimal("29.3");
-    private static final int COUNT_DIGITS_ROUND = 2;
-    private static final BigDecimal TAX_PERCENT = new BigDecimal("0.13");
+    @Value("${calculation.average_count_days_month}")
+    private BigDecimal averageCountDaysMonth;
+    @Value("${calculation.count_digits_rounding}")
+    private int countDigitsRound;
+    @Value("${calculation.tax_percentage}")
+    private BigDecimal taxPercent;
 
     @Override
     public BigDecimal calculate(BigDecimal salary, Integer countDays) {
@@ -20,10 +26,10 @@ public class SimpleCalculator implements Calculator {
         }
         BigDecimal hundredPercent = new BigDecimal(1);
         return salary
-                .multiply(hundredPercent.add(TAX_PERCENT))
-                .divide(AVERAGE_COUNT_DAYS_MONTH, RoundingMode.HALF_EVEN)
+                .multiply(hundredPercent.add(taxPercent))
+                .divide(averageCountDaysMonth, RoundingMode.HALF_EVEN)
                 .multiply(BigDecimal.valueOf(countDays))
-                .multiply(hundredPercent.subtract(TAX_PERCENT))
-                .setScale(COUNT_DIGITS_ROUND, RoundingMode.HALF_EVEN);
+                .multiply(hundredPercent.subtract(taxPercent))
+                .setScale(countDigitsRound, RoundingMode.HALF_EVEN);
     }
 }

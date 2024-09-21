@@ -1,9 +1,17 @@
 spring:
   application:
     name: VacationPayService
-
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  security:
+    user:
+      name: ${admin.username}
+      password: ${admin.password}
+      roles: ADMIN
 app:
-  version: 0.1.4
+  version: 0.1.5
   contact: https://t.me/score_msConfig021
 
 springdoc:
@@ -11,3 +19,14 @@ springdoc:
     path: /api-docs
   swagger-ui:
     path: /api-docs-ui
+
+calculation:
+  tax_percentage: 0.13
+  count_digits_rounding: 2
+  average_count_days_month: 29.3
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, info
