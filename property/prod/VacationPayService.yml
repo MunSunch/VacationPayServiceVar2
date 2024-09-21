@@ -1,0 +1,4 @@
+calculation:
+  tax_percentage: 0.99
+  count_digits_rounding: 2
+  average_count_days_month: 29.3
