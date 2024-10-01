@@ -36,3 +36,5 @@ echo "start application: http://localhost:8080/api-docs-ui"
 ## Метрики
 
 ![](https://downloader.disk.yandex.ru/preview/df60eb5a47e8a810bb40bb9f6ef8d330caedb038c71feb81de772f7beeae7464/66fc199a/mSjVRF9fjuDqKSJ7_CqdkTHuIAsz0HO4O3VAwhL3_3mdKPqrsjhoQQnvULhGRVD9t9qudBGGWyNgXl3Qj4TJ7A%3D%3D?uid=0&filename=metrics.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048)
+
+![](https://downloader.disk.yandex.ru/preview/625bcf1018ec64cd3a342e00d2cc5ed210dbfb1514e57be913c6ac70a49fa003/66fc1dfe/t97OWG4UmdrfK1DaPVYS57o_j10HLNe8XE5MJIUmr6wMx0i12V9lwQAppWTavWan_0IcT9wxRxfgM0elpmpgKg%3D%3D?uid=0&filename=metrics2.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v2&size=2048x2048)
