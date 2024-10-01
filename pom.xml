@@ -12,7 +12,7 @@
 
 	<groupId>com.munsun.services</groupId>
 	<artifactId>VacationPayService</artifactId>
-	<version>0.1.5-SNAPSHOT</version>
+	<version>0.1.6-SNAPSHOT</version>
 	<name>VacationPayService</name>
 
 	<properties>
@@ -64,6 +64,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
 	</dependencies>
 

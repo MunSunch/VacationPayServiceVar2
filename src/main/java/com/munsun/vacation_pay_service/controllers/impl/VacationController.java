@@ -2,6 +2,7 @@ package com.munsun.vacation_pay_service.controllers.impl;
 
 import com.munsun.vacation_pay_service.controllers.VacationApi;
 import com.munsun.vacation_pay_service.services.DefaultVacationService;
+import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

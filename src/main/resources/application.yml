@@ -11,7 +11,7 @@ spring:
       password: ${admin.password}
       roles: ADMIN
 app:
-  version: 0.1.5
+  version: 0.1.6
   contact: https://t.me/score_msConfig021
 
 springdoc:
@@ -29,4 +29,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh, health, info
+        include: refresh, health, info, prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
