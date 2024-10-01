@@ -3,14 +3,12 @@ package com.munsun.vacation_pay_service.services.providers.impl;
 import com.munsun.vacation_pay_service.exceptions.CalculationArgumentException;
 import com.munsun.vacation_pay_service.services.providers.Calculator;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Component
-@RefreshScope
 public class SimpleCalculator implements Calculator {
     @Value("${calculation.average_count_days_month}")
     private BigDecimal averageCountDaysMonth;
