@@ -1,6 +1,11 @@
 version: '3'
 services:
   app:
-    image: munirsunchalyaev/vacation_pay_service:latest
+    build:
+      context: ./
+    environment:
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=admin12345
+#    image: munirsunchalyaev/vacation_pay_service:latest
     ports:
       - "8080:8080"
