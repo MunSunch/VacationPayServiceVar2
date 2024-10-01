@@ -37,7 +37,7 @@ jobs:
           echo "VERSION=$RELEASE_VERSION" >> $GITHUB_ENV
 
       - name: Build image
-        run: docker build . -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:$VERSION -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:latest -e SPRING_SECURITY_USER_NAME=${{ secrets.SPRING_SECURITY_USERNAME }} -e SPRING_SECURITY_USER_PASSWORD=${{ secrets.SPRING_SECURITY_PASSWORD }} --no-cache
+        run: docker build . -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:$VERSION -t ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }}:latest --build-arg SPRING_SECURITY_USER_NAME=${{ secrets.SPRING_SECURITY_USERNAME }} --build-arg SPRING_SECURITY_USER_PASSWORD=${{ secrets.SPRING_SECURITY_PASSWORD }} --no-cache
 
       - name: Send to dockerhub registry
         run: docker push ${{ secrets.DOCKER_LOGIN }}/${{ env.PROJECT_NAME }} --all-tags
