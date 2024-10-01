@@ -1,6 +1,7 @@
 package com.munsun.vacation_pay_service.controllers;
 
 import com.munsun.vacation_pay_service.dto.response.ErrorResponse;
+import io.micrometer.core.annotation.Timed;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
